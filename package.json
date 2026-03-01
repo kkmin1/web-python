@@ -1,0 +1,67 @@
+{
+  "name": "web-python",
+  "version": "1.0.0",
+  "description": "Desktop launcher to run local Python converters",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "dist": "electron-builder --win nsis portable"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "build": {
+    "appId": "com.kkmin.webpython",
+    "productName": "WebPythonLauncher",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      {
+        "from": ".",
+        "to": ".",
+        "filter": [
+          "main.js",
+          "preload.js",
+          "renderer.js",
+          "index.html",
+          "package.json"
+        ]
+      }
+    ],
+    "extraResources": [
+      {
+        "from": ".",
+        "to": "runtime",
+        "filter": [
+          "renderer.js",
+          "*.py",
+          "*.html",
+          "*.txt",
+          "*.md"
+        ]
+      }
+    ],
+    "win": {
+      "icon": "build/setup-current.ico",
+      "target": [
+        "nsis",
+        "portable"
+      ]
+    },
+    "nsis": {
+      "artifactName": "setup.exe",
+      "warningsAsErrors": false,
+      "installerIcon": "build/portable-current.ico",
+      "uninstallerIcon": "build/portable-current.ico",
+      "installerHeaderIcon": "build/portable-current.ico"
+    },
+    "portable": {
+      "artifactName": "Wen_conv_python.exe"
+    }
+  },
+  "devDependencies": {
+    "electron": "^40.6.0",
+    "electron-builder": "^26.0.12"
+  }
+}
